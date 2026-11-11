@@ -39,9 +39,20 @@ export class AddCategory {
       name: addCategoryFormValues.name,
       url: addCategoryFormValues.urlHandler
     }
-    this._categoryService.addCategory(addCategoryRequest);
-    console.log(this._categoryService.addCategoryStatus);
-    this._router.navigate(['/admin/category/list']);
+    //this._categoryService.addCategory(addCategoryRequest);
+    //console.log(this._categoryService.addCategoryStatus);
+    //this._router.navigate(['/admin/categories']);
+
+    this._categoryService.addCategory(addCategoryRequest).subscribe({
+      next: (response) => {
+        console.log('category added successfully', response);
+        // Navigate ONLY after the post request has fully succeeded
+        this._router.navigate(['/admin/categories']);
+      },
+      error: (err) => {
+        console.log('Error occured', err);
+      }
+    });
   }
 }
 

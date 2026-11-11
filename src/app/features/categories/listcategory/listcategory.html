@@ -5,27 +5,30 @@
         <a class="btn btn-primary" routerLink="/admin/category/add">Add
             Category</a>
     </div>
-    <p>@if(this.isLoading()) { - page is loading } @else { page loaded
-        Successfully }
-    </p>
     <div>
+        @if(isLoading()) {
+        <p>Loading ...</p>
+        } @else { @if(isError()) {
+        <p style="color: red;">There has been an error ...</p>
+        } @else{
         <table class="table table-bordered mt-3">
             <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Name</th>
-                    <th>Url Handle</th>
-                </tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Url Handle</th>
             </thead>
             <tbody>
-                @for(c of category(); track $index) {
+                @for(category of value(); track category.id){
                 <tr>
-                    <td>{{c.id}}</td>
-                    <td>{{c.name}}</td>
-                    <td>{{c.urlHandel}}</td>
+                    <td>{{category.id}}</td>
+                    <td>{{category.name}}</td>
+                    <td>{{category.urlHandel}}</td>
                 </tr>
                 }
             </tbody>
+
         </table>
+        } }
     </div>
+
 </div>

@@ -4,7 +4,7 @@ import { AddCategory } from './features/categories/add-category/add-category';
 
 export const routes: Routes = [
     {
-        path: 'admin/category/list',
+        path: 'admin/categories',
         component: Listcategory
     },
     {
